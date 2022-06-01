@@ -11,10 +11,8 @@
   "author": "wahyu purnama",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.27.2",
     "express": "^4.18.1",
-    "mongoose": "^6.3.4",
-    "vue": "^3.2.36"
+    "mongoose": "^6.3.4"
   },
   "devDependencies": {
     "nodemon": "^2.0.16"
