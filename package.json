@@ -1,0 +1,22 @@
+{
+  "name": "node_js",
+  "version": "1.0.0",
+  "description": "restAPI with node js",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "nodemon": "npx nodemon index.js"
+  },
+  "author": "wahyu purnama",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "express": "^4.18.1",
+    "mongoose": "^6.3.4",
+    "vue": "^3.2.36"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
