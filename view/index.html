@@ -27,39 +27,61 @@
         const test2 = (id) =>{
             id.innerHTML = "Menggunakan express js"
         }
-        const test3 = () =>{
-            alert ("Hello World!")
-        }
-        const delNotif = async(id,_id) => {
-            id.innerHTML = ""
-            const res = await axios.delete("http://localhost:3000/notifikasi/"+id)
-            console.log(`deleted , status ${res.status}`)
+        const delNotif = (u) => {
+            var config = {
+            method: 'delete',
+            url: u,
+            headers: { }
+            };
+
+            axios(config)
+            .then(function (response) {
+            console.log(JSON.stringify(response.data))
+            })
+            .catch(function (error) {
+            console.log(error)
+            console.log(u)
+            });
         }
         axios.get('http://localhost:3000/notifikasi/')
         .then(function (response) {
-        // handle success
-        data = response.data
-        notif = ""
-        for(i=0;i<data.length;i++){
-            console.log(`test! ${data[i]._id}`)
-             notif += `<a href="${data[i].link_ref}">
-                <h3>${data[i].judul}</h3>
-                <p>${data[i].pesan}</p></a>
-                <button id="Btn">hapus</button>`
-        }
-        document.getElementById('notif').innerHTML = notif
+            // handle success
+            let data = response.data
+            let notif = ""
+            let url = []
+            for(let i=0;i<data.length;i++){
+                url[i] = "http://localhost:3000/notifikasi/"+data[i]._id
+                notif += 
+                `<a id="notif${i}" href="${data[i].link_ref}">
+                    <h3>${data[i].judul}</h3>
+                    <p>${data[i].pesan}</p>
+                </a>`
+                // <button id="notif${i}">hapus</button>`
+            }
+            console.log(url)
+            document.getElementById('notif').innerHTML = notif
+            for(let i=data.length-1;i>=0;i--){
+                u = url[i]
+                document
+                .getElementById("notif"+i)
+                .addEventListener("click", 
+                func = ()=>{
+                    console.log(u)
+                    delNotif(u)
+                })
+            }
         })
         .catch(function (error) {
         // handle error
-        console.log(error)
+            console.log(error)
         })
         .then(function () {
         // always executed
         })
-        document.getElementById("Btn").addEventListener("click", test3)
     </script>
 </head>
 <body>
+
 <h1 onclick="test1(this)">
     Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
 </h1>
